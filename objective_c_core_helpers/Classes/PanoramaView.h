@@ -1,4 +1,5 @@
 #import <Foundation/Foundation.h>
+#import <GLKit/GLKit.h>
 
 /**
  * @class Panorama View
@@ -52,7 +53,6 @@
  * Align Z coordinate axis (into the screen) to a GLKVector.
  * (due to a fixed up-vector, flipping will occur at the poles)
  *
- * @param GLKVector3 can be non-normalized
  */
 -(void) orientToVector:(GLKVector3)vector;
 
@@ -60,7 +60,6 @@
  * Align Z coordinate axis (into the screen) to azimuth and altitude.
  * (due to a fixed up-vector, flipping will occur at the poles)
  *
- * @param Azimuth(-π to π) Altitude(-.5π to .5π)
  */
 -(void) orientToAzimuth:(float) azimuth Altitude:(float)altitude;
 
@@ -88,7 +87,6 @@
 /**
  * Convert a 3D world-coordinate (specified by a vector from the origin) to a 2D on-screen coordinate
  *
- * @param GLKVector3 coordinate location from origin. Use with CGRectContainsPoint( [[UIScreen mainScreen] bounds], screenPoint )
  * @return a screen pixel coordinate representation of a 3D world coordinate
  */
 -(CGPoint) screenLocationFromVector:(GLKVector3)vector;
@@ -96,7 +94,6 @@
 /**
  * Converts a 2D on-screen coordinate to a vector in 3D space pointing out from the origin
  *
- * @param CGPoint screen coordinate
  * @return GLKVector3 vector pointing outward from origin
  */
 -(GLKVector3) vectorFromScreenLocation:(CGPoint)point;
@@ -104,7 +101,6 @@
 /**
  * Converts a 2D on-screen coordinate to a pixel (x,y) of the loaded panorama image
  *
- * @param CGPoint screen coordinate
  * @return CGPoint image coordinate in pixels. If no image, between 0.0 and 1.0
  */
 -(CGPoint) imagePixelAtScreenLocation:(CGPoint)point;
@@ -112,7 +108,6 @@
 /**
  * Hit-detection for all active touches
  *
- * @param CGRect defined in image pixel coordinates
  * @return YES if touch is inside CGRect, NO otherwise
  */
 -(BOOL) touchInRect:(CGRect)rect;

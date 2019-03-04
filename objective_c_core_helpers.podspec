@@ -16,7 +16,7 @@ This pod file contains objective_c core helpers, That's you use in your every pr
     s.platform = :ios, '7.0'
     s.requires_arc = true
         
-    s.dependency 'RestKit', '~> 0.26'
+    s.dependency 'RestKit', '~> 0.20'
         
     s.source_files = 'objective_c_core_helpers/Classes/**/*'
     

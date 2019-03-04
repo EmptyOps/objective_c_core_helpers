@@ -42,7 +42,7 @@ NSMutableDictionary *downloadCallbackDict;
 {
     // initialize AFNetworking HTTPClient
     NSURL *baseURL = [NSURL URLWithString:[[config singleton] REST_URL]];
-    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:baseURL];
+    AFRKHTTPClient *client = [[AFRKHTTPClient alloc] initWithBaseURL:baseURL];
     
     
     NSLog(@"configureRestKit baseURL %@",baseURL);
@@ -236,7 +236,7 @@ NSMutableDictionary *downloadCallbackDict;
     //show app network activity inidicator
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
-    NSMutableURLRequest *request = [self.objectManager multipartFormRequestWithObject:article method:RKRequestMethodPOST path:[[config singleton] restUri:[NSString stringWithFormat:@"%@/%@", controller, href] withQuery:hrefParams] parameters:formParams constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
+    NSMutableURLRequest *request = [self.objectManager multipartFormRequestWithObject:article method:RKRequestMethodPOST path:[[config singleton] restUri:[NSString stringWithFormat:@"%@/%@", controller, href] withQuery:hrefParams] parameters:formParams constructingBodyWithBlock:^(id<AFRKMultipartFormData> formData)
                                     {
                                         NSLog(@"postpram upload image: %@",formParams);
                                         [formData appendPartWithFileData:image
