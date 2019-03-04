@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
         s.author           = { 'EmptyOps' => 'hsquaretechnology@gmail.com' }
         s.source           = { :git => 'https://github.com/EmptyOps/objective_c_core_helpers.git', :tag => s.version.to_s }
         
-        s.ios.deployment_target = '8.0'
+        # s.ios.deployment_target = '8.0'
         s.platform = :ios, '7.0'
         s.requires_arc = true
         

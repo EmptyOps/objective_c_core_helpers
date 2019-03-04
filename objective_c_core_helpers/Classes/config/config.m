@@ -8,7 +8,6 @@
 
 #import "config.h"
 #import "session.h"
-#import "constants.h"
 
 @implementation config
 
