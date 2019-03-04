@@ -1,6 +1,9 @@
 use_frameworks!
 
-platform :ios, '8.0'
+platform :ios, '7.0'
+
+# source 'https://github.com/CocoaPods/Specs.git’
+source 'https://github.com/EmptyOps/objective_c_core_helpers.git'
 
 target 'objective_c_core_helpers_Example' do
   pod 'objective_c_core_helpers', :path => '../'

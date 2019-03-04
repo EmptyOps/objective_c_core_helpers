@@ -1,0 +1,16 @@
+PODS:
+  - objective_c_core_helpers (0.0.1)
+
+DEPENDENCIES:
+  - objective_c_core_helpers (from `../`)
+
+EXTERNAL SOURCES:
+  objective_c_core_helpers:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  objective_c_core_helpers: d5a286cb7db5f30887b5eec0fc191b11d891c85d
+
+PODFILE CHECKSUM: fd732b8102abcfe33dba87cfeb5d689444906fb0
+
+COCOAPODS: 1.5.3
