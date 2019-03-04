@@ -45,9 +45,9 @@
 
 -(void) setShippSessions:() responseObj;
 
--(BOOL) isCartLoggedIn;
+//-(BOOL) isCartLoggedIn;
 
--(void) unsetLoginSessions;
+//-(void) unsetLoginSessions;
 
 -(void) unsetCheckOutSession;
 
@@ -67,7 +67,7 @@
 
 /**
  */
--(BOOL) is_shipp_info_set;
+//-(BOOL) is_shipp_info_set;
 
 /**
  *
@@ -77,7 +77,7 @@
 /**
  *
  */
--(BOOL) isLoggedIn;
+//-(BOOL) isLoggedIn;
 
 -(BOOL) isAdmin;
 -(BOOL) isOwner;
@@ -124,7 +124,7 @@
 
 -(void) unsetChatConnectionLoginSessions;
 
--(BOOL) isChatCredentialAvailable;
+//-(BOOL) isChatCredentialAvailable;
 
 -(BOOL) isChatConnected;
 

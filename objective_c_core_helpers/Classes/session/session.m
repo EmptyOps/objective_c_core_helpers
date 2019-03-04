@@ -49,8 +49,8 @@ static session *sessionSingleton;
 ///**
 // *
 // */
-//-(BOOL) isSession:(NSString *) key
-//{
+-(BOOL) isSession:(NSString *) key
+{
 //    NSString *val = [[sqLiteHelper singleton] getConfigKey:key ];
 //    if( [val length] == 0 )
 //    {
@@ -60,7 +60,12 @@ static session *sessionSingleton;
 //    {
 //        return true;
 //    }
-//}
+    if(true)
+    {
+        return true;
+    }
+//    NSLog(@"res %@",key);
+}
 
 -(NSString *) userdata:(NSString *) key
 {
@@ -69,13 +74,13 @@ static session *sessionSingleton;
     return val == nil ? @"" : val;
 }
 
-//-(float) getTimeZone
-//{
-////    if(true)
-////        return 7.33;
-////
+-(float) getTimeZone
+{
+    if(true)
+        return 7.33;
+
 //    NSString* res = [[session singleton] userdata:@"timezone"];
-//  //  NSLog(@"res %@",res);
+//    NSLog(@"res %@",res);
 //    if( ![imlb isStrEmptyStrict:res] )
 //    {
 //      //  NSLog(@"inif");
@@ -86,7 +91,7 @@ static session *sessionSingleton;
 //    //    NSLog(@"inelse");
 //        return [imlb strToFloatSecure:@"-8"];
 //    }
-//}
+}
 
 ///**
 // * cart login
@@ -357,7 +362,6 @@ static session *sessionSingleton;
  * function will unset check out related all session on completion of order,
  * here it is required to note that on REST client all JavaScript counter part sessions are held in
  * client sessions and not server session. SO Don't confuse it with server session.
- * @param session_prefix is used to separate admin session from customer session
 	*/
 
 -(void) unsetCheckOutSession
