@@ -266,7 +266,7 @@ NSMutableDictionary *downloadCallbackDict;
                                                NSDictionary *resObj;
                                                if( operation != nil )
                                                {
-                                                   resObj = [imlb jsonStrToObj:operation];
+//                                                  resObj = [imlb jsonStrToObj:operation];
                                                    
                                                    if( [[resObj objectForKey:@"type"] isEqualToString:@"success"] )
                                                    {
@@ -340,7 +340,7 @@ NSMutableDictionary *downloadCallbackDict;
     {
         ( (UIProgressView*)[downloadProgressBars objectForKey:key]).hidden = NO;
         [( (NSMutableData*)[downloadReceivedData objectForKey:key]) setLength:0];
-        [imlb dictionary:downloadExpectedBytes key:key value:[NSNumber numberWithLongLong:[response expectedContentLength]]];
+//        [imlb dictionary:downloadExpectedBytes key:key value:[NSNumber numberWithLongLong:[response expectedContentLength]]];
     }
 }
 

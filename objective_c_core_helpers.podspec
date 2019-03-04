@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
     s.summary          = 'A core helpers for objective_c'
     
     s.description      = <<-DESC
-This pod file contains objective_c core helpers, That's you use in your every project. You can import helper files sepratally in your project ,Now don't need to import helpers files anytime just podfile in add that pods and done.
+This pod file contains objective_c core helpers, That's you use in your every project. You import helper files sepratally in your project ,Now don't need to import helpers files in your project just add pod into the podfile and done.
         DESC
         
     s.homepage         = 'https://github.com/EmptyOps/objective_c_core_helpers'
