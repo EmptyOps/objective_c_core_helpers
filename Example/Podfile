@@ -2,7 +2,7 @@ use_frameworks!
 
 platform :ios, '7.0'
 
-# source 'https://github.com/CocoaPods/Specs.git’
+source 'https://github.com/CocoaPods/Specs.git’
 source 'https://github.com/EmptyOps/objective_c_core_helpers.git'
 
 target 'objective_c_core_helpers_Example' do

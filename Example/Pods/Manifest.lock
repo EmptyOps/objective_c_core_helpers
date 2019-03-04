@@ -1,16 +1,57 @@
 PODS:
-  - objective_c_core_helpers (0.0.1)
+  - AFNetworking (1.3.4)
+  - ISO8601DateFormatterValueTransformer (0.6.1):
+    - RKValueTransformers (~> 1.1.0)
+  - objective_c_core_helpers (0.0.1):
+    - RestKit (~> 0.26)
+  - RestKit (0.26.0):
+    - RestKit/Core (= 0.26.0)
+  - RestKit/Core (0.26.0):
+    - RestKit/CoreData
+    - RestKit/Network
+    - RestKit/ObjectMapping
+  - RestKit/CoreData (0.26.0):
+    - RestKit/ObjectMapping
+  - RestKit/Network (0.26.0):
+    - AFNetworking (~> 1.3.0)
+    - RestKit/ObjectMapping
+    - RestKit/Support
+    - SOCKit
+  - RestKit/ObjectMapping (0.26.0):
+    - ISO8601DateFormatterValueTransformer (~> 0.6.1)
+    - RestKit/Support
+    - RKValueTransformers (~> 1.1.0)
+  - RestKit/Support (0.26.0):
+    - TransitionKit (~> 2.2)
+  - RKValueTransformers (1.1.3)
+  - SOCKit (1.1)
+  - TransitionKit (2.2.1)
 
 DEPENDENCIES:
   - objective_c_core_helpers (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AFNetworking
+    - ISO8601DateFormatterValueTransformer
+    - RestKit
+    - RKValueTransformers
+    - SOCKit
+    - TransitionKit
 
 EXTERNAL SOURCES:
   objective_c_core_helpers:
     :path: "../"
 
 SPEC CHECKSUMS:
-  objective_c_core_helpers: d5a286cb7db5f30887b5eec0fc191b11d891c85d
+  AFNetworking: cf8e418e16f0c9c7e5c3150d019a3c679d015018
+  ISO8601DateFormatterValueTransformer: 52da467d6ec899d6aedda8e48280ac92e8ee97e6
+  objective_c_core_helpers: 06db3804b16fb3af25ff7371fb6f60ad5a11f440
+  RestKit: 112fba5bd1f97598aac0db7981863d5fdc0263a2
+  RKValueTransformers: e5ed67e3811229b616fe01bddeeafe3bb337b1b9
+  SOCKit: c7376ac262bea9115b8f749358f762522a47d392
+  TransitionKit: 9ceccda4cd0cdc0a05ef85eb235e5a3292c3c250
 
-PODFILE CHECKSUM: fd732b8102abcfe33dba87cfeb5d689444906fb0
+PODFILE CHECKSUM: 714015f8caca08140882ba4fcc8fbb08089a69c3
 
 COCOAPODS: 1.5.3
