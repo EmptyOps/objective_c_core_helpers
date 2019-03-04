@@ -29,6 +29,7 @@ PODS:
 
 DEPENDENCIES:
   - objective_c_core_helpers (from `../`)
+  - RestKit (~> 0.26)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -52,6 +53,6 @@ SPEC CHECKSUMS:
   SOCKit: c7376ac262bea9115b8f749358f762522a47d392
   TransitionKit: 9ceccda4cd0cdc0a05ef85eb235e5a3292c3c250
 
-PODFILE CHECKSUM: 714015f8caca08140882ba4fcc8fbb08089a69c3
+PODFILE CHECKSUM: 0e1b0966f3d5ee1acca6b83ff0f8d30db3d3fa42
 
 COCOAPODS: 1.5.3
