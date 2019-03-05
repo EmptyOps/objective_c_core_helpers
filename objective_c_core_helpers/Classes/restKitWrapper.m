@@ -2,14 +2,13 @@
 //  restKitWrapper.m
 //  XClient
 //
-//  Created by Hitesh Khunt on 06/06/15.
 //  Copyright (c) 2015 XClient. All rights reserved.
 //
 
 #import "restKitWrapper.h"
 #import "Venue.h"
 #import "config.h"
-//#import "imlb.h"
+#import <AFNetworking/AFNetworking.h>
 
 @implementation restKitWrapper
 
@@ -42,16 +41,10 @@ NSMutableDictionary *downloadCallbackDict;
 {
     // initialize AFNetworking HTTPClient
     NSURL *baseURL = [NSURL URLWithString:[[config singleton] REST_URL]];
-    AFRKHTTPClient *client = [[AFRKHTTPClient alloc] initWithBaseURL:baseURL];
-    
-    
-    NSLog(@"configureRestKit baseURL %@",baseURL);
+    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:baseURL];
     
     //initialize RestKit
     self.objectManager = [[RKObjectManager alloc] initWithHTTPClient:client];
-    
-    NSLog(@"configureRestKit baseURL middle");
-    NSLog(@"configureRestKit baseURL last");
     
     //
     downloadReceivedData = [[NSMutableDictionary alloc] init];
@@ -217,8 +210,6 @@ NSMutableDictionary *downloadCallbackDict;
               success:(void(^)(RKObjectRequestOperation *operation, RKMappingResult *result))success
               failure:(void(^)(RKObjectRequestOperation *operation, NSError *error))failure
 {
-    //    NSLog(@"upload images:%@ path : %@",image,[[config singleton] restUri:[NSString stringWithFormat:@"%@/%@", controller, href] withQuery:hrefParams]);
-    
     // Serialize the Article attributes then attach a file
     NSObject *article = [NSObject new];
     
@@ -266,7 +257,7 @@ NSMutableDictionary *downloadCallbackDict;
                                                NSDictionary *resObj;
                                                if( operation != nil )
                                                {
-//                                                  resObj = [imlb jsonStrToObj:operation];
+                                                  resObj = [self jsonStrToObj:operation];
                                                    
                                                    if( [[resObj objectForKey:@"type"] isEqualToString:@"success"] )
                                                    {
@@ -285,122 +276,16 @@ NSMutableDictionary *downloadCallbackDict;
     
 }
 
-/*********************** download file functions Using NSURLConnection *************************/
-//taken from http://stackoverflow.com/questions/16453655/objective-c-downloading-file-with-progress-bar
-
--(NSString*) getDownloadConnectionKey:(NSURLConnection *)connection
+-(NSDictionary*) jsonStrToObj:(RKObjectRequestOperation *) operation
 {
-    NSString *key = nil;
-    for (NSString* k in downloadConnections)
-    {
-        if( [downloadConnections objectForKey:k] == connection )
-        {
-            key = k;
-            break;
-        }
-    }
-    return key;
+    NSDictionary *resObj = [NSJSONSerialization JSONObjectWithData:operation.HTTPRequestOperation.responseData options:NSJSONReadingMutableLeaves error:nil];
+    
+    return resObj;
 }
 
--(void) removeDownloadConnectionObjects:(NSURLConnection *)connection
+-(void) dictionary:(NSMutableDictionary *)dictMutable key:(NSString *)key value:(id)value
 {
-    NSString *key = [self getDownloadConnectionKey:connection];
-    
-    if( key != nil )
-    {
-        [downloadReceivedData removeObjectForKey:key];
-        [downloadConnections removeObjectForKey:key];
-        [downloadProgressBars removeObjectForKey:key];
-        [downloadExpectedBytes removeObjectForKey:key];
-        [downloadSavePath removeObjectForKey:key];
-        [downloadCallbackDict removeObjectForKey:key];
-    }
+    [dictMutable setObject:value forKey:key];
 }
-
--(void)downloadWithNsurlconnection:(NSString*) currentURL progressBar:(UIProgressView*) progressBar savePath:(NSString*) savePath key:(NSString*) key callback:(downloadCallback)callback
-{
-    //NSString *key = [imlb timestamp];
-    NSURL *url = [NSURL URLWithString:currentURL];
-    NSURLRequest *theRequest = [NSURLRequest requestWithURL:url         cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:60];
-    [downloadReceivedData setObject:[[NSMutableData alloc] initWithLength:0] forKey:key];
-    [downloadConnections setObject:[[NSURLConnection alloc] initWithRequest:theRequest delegate:self     startImmediately:YES] forKey:key];
-    [downloadProgressBars setObject:progressBar forKey:key];
-    [downloadExpectedBytes setObject:[NSNumber numberWithLong:0] forKey:key];
-    [downloadSavePath setObject:savePath forKey:key];
-    [downloadCallbackDict setObject:callback forKey:key];
-}
-
-- (void) connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    
-    NSString *key = [self getDownloadConnectionKey:connection];
-    
-    if( key != nil )
-    {
-        ( (UIProgressView*)[downloadProgressBars objectForKey:key]).hidden = NO;
-        [( (NSMutableData*)[downloadReceivedData objectForKey:key]) setLength:0];
-//        [imlb dictionary:downloadExpectedBytes key:key value:[NSNumber numberWithLongLong:[response expectedContentLength]]];
-    }
-}
-
-- (void) connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    NSString *key = [self getDownloadConnectionKey:connection];
-    
-    if( key != nil )
-    {
-        [((NSMutableData*)[downloadReceivedData objectForKey:key]) appendData:data];
-        float progressive = (float)[((NSMutableData*)[downloadReceivedData objectForKey:key]) length] / (float)[[downloadExpectedBytes objectForKey:key] longLongValue];
-        [((UIProgressView*)[downloadProgressBars objectForKey:key]) setProgress:progressive];
-    }
-}
-
-- (void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    
-    //show error
-    //[imui errorMsg:1 forMsg:[NSString stringWithFormat:@"Download failed, %@", [error localizedDescription]]];
-    NSMutableDictionary *response = [[NSMutableDictionary alloc] init];
-    [response setValue:@"error" forKey:@"type"];
-    [response setValue:[NSString stringWithFormat:@"Download failed, %@", [error localizedDescription]] forKey:@"msg"];
-    
-    NSString *key = [self getDownloadConnectionKey:connection];
-    ((downloadCallback)[downloadCallbackDict objectForKey:key])(response);
-    
-    //flush download objects
-    [self removeDownloadConnectionObjects:connection];
-}
-
-- (NSCachedURLResponse *) connection:(NSURLConnection *)connection willCacheResponse:    (NSCachedURLResponse *)cachedResponse
-{
-    return nil;
-}
-
-- (void) connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    NSString *key = [self getDownloadConnectionKey:connection];
-    if( key != nil )
-    {
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        [((NSMutableData*)[downloadReceivedData objectForKey:key]) writeToFile:((NSString*)[downloadSavePath objectForKey:key]) atomically:YES];
-        ((UIProgressView*)[downloadProgressBars objectForKey:key]).hidden = YES;
-        
-        //show success msg
-        //[imui showToast:@"" withDuration:2];
-        NSMutableDictionary *response = [[NSMutableDictionary alloc] init];
-        [response setValue:@"success" forKey:@"type"];
-        [response setValue:@"" forKey:@"msg"];
-        
-        ((downloadCallback)[downloadCallbackDict objectForKey:key])(response);
-        
-        
-        [self removeDownloadConnectionObjects:connection];
-    }
-    
-}
-
-/*********************** download file functions Using NSURLConnection END *************************/
 
 @end

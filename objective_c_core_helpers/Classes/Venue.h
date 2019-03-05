@@ -22,18 +22,3 @@
 
 @end
 
-//@interface Venue : NSObject {
-//    NSNumber* _identifier;
-//    NSString* _name;
-//    NSString* _company;
-//
-//    NSDictionary* _response;
-//}
-//
-//@property (nonatomic, retain) NSNumber* identifier;
-//@property (nonatomic, retain) NSString* name;
-//@property (nonatomic, retain) NSString* company;
-//
-//@property (nonatomic, retain) NSDictionary* response;
-//
-//@end

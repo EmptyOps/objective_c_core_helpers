@@ -107,12 +107,4 @@ static config *configSingleton;
     return @"PIU_";
 }
 
-/**
- * de reference all references to object and variable it will help prevent memory leak/massive memory usage
- */
-//public void do_cleanup()
-//{
-//    config = null;
-//}
-
 @end

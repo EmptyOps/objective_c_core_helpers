@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name             = 'objective_c_core_helpers'
-    s.version          = '0.0.1'
+    s.version          = '0.0.2'
     s.summary          = 'A core helpers for objective_c'
     
     s.description      = <<-DESC
@@ -17,6 +17,7 @@ This pod file contains objective_c core helpers, That's you use in your every pr
     s.requires_arc = true
         
     s.dependency 'RestKit', '~> 0.20'
+    s.dependency 'AFNetworking',  '~> 1.3.3'
         
     s.source_files = 'objective_c_core_helpers/Classes/**/*'
     

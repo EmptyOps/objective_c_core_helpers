@@ -17,17 +17,9 @@
 
 -(void) setSessionId:(NSString *) session_id;
 
--(BOOL) isSession:(NSString *) key;
-
 -(NSString *) userdata:(NSString *) key;
 
--(float) getTimeZone;
-
-//public Map<String, String> userdata_map( String key )
-
 -(void) set_userdata:(NSString *) key withValue:(NSString *) val;
-
-//public void set_userdata( String key, Map<String, String> map );
 
 -(void) unset_userdata:(NSString *) key;
 
@@ -37,17 +29,11 @@
 
 -(void) _flashdata_sweep:(NSString *) key;
 
-//	function _flashdata_mark();
-
-//	function _flashdata_sweep();
-
 -(void) setLoginSessions:(NSDictionary*) responseObj;
 
+-(void) unsetLoginSessions;
+
 -(void) setShippSessions:() responseObj;
-
-//-(BOOL) isCartLoggedIn;
-
-//-(void) unsetLoginSessions;
 
 -(void) unsetCheckOutSession;
 
@@ -65,19 +51,7 @@
 
 -(id) getObject: (NSString*)arrayKey;
 
-/**
- */
-//-(BOOL) is_shipp_info_set;
-
-/**
- *
- */
 -(BOOL) isSellerLoggedIn;
-
-/**
- *
- */
-//-(BOOL) isLoggedIn;
 
 -(BOOL) isAdmin;
 -(BOOL) isOwner;
@@ -110,27 +84,5 @@
 -(NSString*) getSearchLocationText;
 
 /***************************** search session functions ends *********************************/
-
-
-/************************************ chat session functions ***************************************/
-
--(void) setChatLoginSessions:(UIViewController*) he_ControllerObj resObj:(NSDictionary*) resObj;
-
--(void) setChatLoginSessions:(UIViewController*) he_ControllerObj user_id:(NSString*) user_id pass:(NSString*) pass chat_usr_email:(NSString*) chat_usr_email chat_usr_fname:(NSString*) chat_usr_fname;
-
--(void) unsetChatLoginSessions;
-
--(void) setChatConnectionSessions;
-
--(void) unsetChatConnectionLoginSessions;
-
-//-(BOOL) isChatCredentialAvailable;
-
--(BOOL) isChatConnected;
-
-/************************************ chat session functions end ***************************************/
-
-
--(void) do_cleanup;
 
 @end

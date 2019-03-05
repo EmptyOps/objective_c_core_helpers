@@ -19,10 +19,6 @@
                                                          @"name":     @"name"
                                                          }];
     
-    // if the obj have relationship
-    //    RKRelationshipMapping *rl = [RKRelationshipMapping relationshipMappingFromKeyPath:@"someKey" toKeyPath:@"toKey" withMapping:[Obj mapping]];
-    //    [requestMapping addPropertyMappingsFromArray:@[rl]];
-    
     return requestMapping;
 }
 
@@ -41,10 +37,6 @@
     [requestMapping addAttributeMappingsFromDictionary:@{
                                                          @"response":     @"response"
                                                          }];
-    
-    // if the obj have relationship
-    //    RKRelationshipMapping *rl = [RKRelationshipMapping relationshipMappingFromKeyPath:@"someKey" toKeyPath:@"toKey" withMapping:[Obj mapping]];
-    //    [requestMapping addPropertyMappingsFromArray:@[rl]];
     
     return requestMapping;
 }

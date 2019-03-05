@@ -2,7 +2,6 @@
 //  restKitWrapper.h
 //  XClient
 //
-//  Created by Hitesh Khunt on 06/06/15.
 //  Copyright (c) 2015 XClient. All rights reserved.
 //
 
@@ -21,6 +20,10 @@
 
 typedef void(^downloadCallback)(NSDictionary *response);
 @property(nonatomic,strong) downloadCallback callback;
+
+-(NSDictionary*) jsonStrToObj:(RKObjectRequestOperation *) operation;
+
++(BOOL) dictionary:(NSDictionary*) dict valueOfKey:(NSString*) key equalToStr:(NSString*) str;
 
 /**
  *  singltone
@@ -43,7 +46,6 @@ typedef void(^downloadCallback)(NSDictionary *response);
                       success:(void(^)(RKObjectRequestOperation *operation, RKMappingResult *result))success
                       failure:(void(^)(RKObjectRequestOperation *operation, NSError *error))failure
                    formMethod:(NSInteger)formMethod;
-
 
 /**
  *

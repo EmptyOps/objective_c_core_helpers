@@ -35,19 +35,11 @@
 /// forward vertical altitude (-.5π to .5π)
 @property (nonatomic, readonly) float lookAltitude;
 
-
-// At this point, it's still recommended to activate either OrientToDevice or TouchToPan, not both
-//   it's possible to have them simultaneously, but the effect is confusing and disorienting
-
-
 /// Activates accelerometer + gyro orientation
 @property (nonatomic) BOOL orientToDevice;
 
 /// Enables UIPanGestureRecognizer to affect view orientation
 @property (nonatomic) BOOL touchToPan;
-
-/// Fixes up-vector during panning. (trade off: no panning past the poles)
-//@property (nonatomic) BOOL preventHeadTilt;
 
 /**
  * Align Z coordinate axis (into the screen) to a GLKVector.
