@@ -37,6 +37,10 @@
 
 -(void) unsetCheckOutSession;
 
+-(BOOL) isEmpty:(NSString *) subject;
+
+-(BOOL) isLoggedIn;
+
 -(void) updateLangSession:() responseObj withValue:(NSString *) lang;
 
 -(void) setJSONSession:(NSString *) key withValue:(NSDictionary *) jsonObj;

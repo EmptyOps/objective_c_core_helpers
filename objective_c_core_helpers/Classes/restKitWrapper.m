@@ -227,7 +227,7 @@ NSMutableDictionary *downloadCallbackDict;
     //show app network activity inidicator
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
-    NSMutableURLRequest *request = [self.objectManager multipartFormRequestWithObject:article method:RKRequestMethodPOST path:[[config singleton] restUri:[NSString stringWithFormat:@"%@/%@", controller, href] withQuery:hrefParams] parameters:formParams constructingBodyWithBlock:^(id<AFRKMultipartFormData> formData)
+    NSMutableURLRequest *request = [self.objectManager multipartFormRequestWithObject:article method:RKRequestMethodPOST path:[[config singleton] restUri:[NSString stringWithFormat:@"%@/%@", controller, href] withQuery:hrefParams] parameters:formParams constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
                                     {
                                         NSLog(@"postpram upload image: %@",formParams);
                                         [formData appendPartWithFileData:image

@@ -45,6 +45,18 @@ static session *sessionSingleton;
     return val == nil ? @"" : val;
 }
 
+-(BOOL) isEmpty:(NSString *) subject
+{
+    return [subject length] == 0;
+}
+
+-(BOOL) isLoggedIn
+{
+    //return ( imlb.strToIntSecure(ctx, userdata("customer_id")) > 0 ) ? true : false;
+    return (![self isEmpty:[self userdata:@"email"]] ) ? YES : NO;
+}
+
+
 /**
  * update LANG session key for this class and lang session it self
  */
