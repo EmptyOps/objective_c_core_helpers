@@ -20,6 +20,11 @@ NSMutableDictionary *downloadProgressBars;
 NSMutableDictionary *downloadSavePath;
 NSMutableDictionary *downloadCallbackDict;
 
+/***
+ ********************** This restwarpper is use to the add multiple dep[endency in to the your project and
+****you add library for common helpers...
+ */
+
 +(restKitWrapper *) singleton
 {
     static BOOL initialized = NO;
